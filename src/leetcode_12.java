@@ -1,25 +1,22 @@
 public class leetcode_12 {
     public static void main(String[] args) {
-        int input = 3;
+        int input = 3984;
         String ans = inToRoman(input);
         System.out.println(ans);
     }
     public static String inToRoman(int num){
-        String ans ="";
-        String roman [] = {"I", "V", "X", "L", "C", "D","M"};
-        int romanNum [] = {1,5,10,50,100,500,1000}; // 0~6
+        StringBuilder result = new StringBuilder();
+        String roman [] = {"I","IV","V","IX" ,"X","XL" ,"L","XC" ,"C","CD" ,"D","CM","M"};
+        int romanNum [] = {1,4,5,9,10,40,50,90,100,400,500,900,1000}; // 0~12
         int lastIdx = roman.length-1;
-        int i = 1000;
-        while(num >0){
-            if(num/romanNum[lastIdx]>0){
-                int pivotNum = num/romanNum[lastIdx]; // will be one digit, change to Romannum
-                if(pivotNum == 4 || pivotNum ==9){
-                    //내일하자
-                }
-
+        for (int i = romanNum.length-1; i >= 0;) {
+            if (num >= romanNum[i]) {
+                result.append(roman[i]);
+                num -= romanNum[i];
+            } else {
+                i--;
             }
-
         }
-        return ans;
+        return result.toString();
     }
 }
