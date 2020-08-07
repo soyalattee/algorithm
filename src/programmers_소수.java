@@ -69,6 +69,6 @@ public class programmers_소수 {
             }
         }
         System.out.println(sb.toString());
-        return sb.toString();
+        //return sb.toString();
     }
 }
