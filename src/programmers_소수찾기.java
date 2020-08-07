@@ -2,12 +2,11 @@ import java.util.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class programmers_소수 {
+public class programmers_소수찾기 {
     private static List list = new ArrayList<String>();
     public static void main(String[] args) {
         String numbers = "110"; // => 3 "011" =>2  만들 수 있는 소수 갯수
-        int ans = solution(numbers);
-        System.out.println(ans);
+        System.out.println(solution(numbers));
     }
     public static int solution(String numbers) {
         int answer = 0;
@@ -24,7 +23,6 @@ public class programmers_소수 {
                 answer++;
             }
         }
-
         return answer;
     }
 
@@ -49,26 +47,21 @@ public class programmers_소수 {
             return ;
         }
         for(int i=start; i<len; i++) {
-            visited[i] = true;
-            comb(arr, visited, i + 1,len , r - 1);
-            visited[i] = false;
+                visited[i] = true;
+                comb(arr, visited, i + 1, len, r - 1);
+                visited[i] = false;
         }
     }
-
-    //조합
-    static void perm (char[] arr,boolean[]visited,int len){
-
-    }
-
 
     static void save (char[] arr,boolean[] visited,int len){
         StringBuilder sb = new StringBuilder();
+        List perm = new ArrayList<Character>(); //순열 해야하는 숫자를 담고있는 배열
         for (int i = 0; i < len; i++) {
-            if(visited[i]){
-                sb.append(arr[i]);
-            }
+            if(visited[i]) perm.add(arr[i]);
         }
+        //perm 을 permutation 돌려주자
         System.out.println(sb.toString());
         //return sb.toString();
     }
+
 }
