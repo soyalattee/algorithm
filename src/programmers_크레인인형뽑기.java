@@ -7,8 +7,6 @@ public class programmers_크레인인형뽑기 {
         int[] moves = {1,5,3,5,1,2,1,4}; //0~100
         System.out.println(solution(board,moves));
     }
-
-
     public static int solution(int[][] board, int[] moves) {
         int answer = 0;
         Stack<Integer> basket = new Stack<>();
@@ -22,9 +20,6 @@ public class programmers_크레인인형뽑기 {
                 }
             }
             System.out.println();
-        }
-        for (int i: lastIdx) {
-            System.out.print(i);
         }
 
         for (int i = 0; i < moves.length; i++) {

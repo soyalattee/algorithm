@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class programmers_소수찾기 {
-    private static List list = new ArrayList<String>();
+    private static HashSet<Integer> set = new HashSet<>();
     public static void main(String[] args) {
         String numbers = "110"; // => 3 "011" =>2  만들 수 있는 소수 갯수
         System.out.println(solution(numbers));
@@ -14,12 +14,12 @@ public class programmers_소수찾기 {
         boolean[] visited = new boolean[numberArray.length];
         int len = numberArray.length;
         for (int i = 1; i <= len ; i++) {
-            comb(numberArray,visited,0,len,i);
+            perm(numberArray,0,i);
         }
 
-        for (Object str : list) {
-            int number = Integer.parseInt(str.toString());
-            if(checkPrimeNumber(number)){
+        for (Object number : set) {
+            if(checkPrimeNumber((int)number)){
+                System.out.println(number);
                 answer++;
             }
         }
@@ -30,7 +30,7 @@ public class programmers_소수찾기 {
         if(number==1 || number==0) return false;
         int i = 2;
         int max = number/2;
-        while(i<max){
+        while(i<=max){
             if(number%i ==0) return false;
             else{
                 i++;
@@ -41,27 +41,32 @@ public class programmers_소수찾기 {
         return true;
     }
 
-    static void comb(char[] arr, boolean[] visited, int start, int len, int r) {
-        if(r == 0) {
-             save(arr, visited, len);
+    static void perm(char[] arr, int depth, int k) {
+        if(depth == k) {
+             save(arr, k);
             return ;
         }
-        for(int i=start; i<len; i++) {
-                visited[i] = true;
-                comb(arr, visited, i + 1, len, r - 1);
-                visited[i] = false;
+        for(int i=depth; i<arr.length; i++) {
+                swap(arr,i,depth);
+                perm(arr,depth + 1, k);
+                swap(arr,i,depth);
         }
     }
 
-    static void save (char[] arr,boolean[] visited,int len){
+    public static void swap(char[] arr, int i, int j){
+        char temp=arr[i];
+        arr[i]=arr[j];
+        arr[j]=temp;
+    }
+
+    static void save (char[] arr,int len){
         StringBuilder sb = new StringBuilder();
-        List perm = new ArrayList<Character>(); //순열 해야하는 숫자를 담고있는 배열
         for (int i = 0; i < len; i++) {
-            if(visited[i]) perm.add(arr[i]);
+             sb.append(arr[i]);
         }
-        //perm 을 permutation 돌려주자
-        System.out.println(sb.toString());
+        //System.out.println(sb.toString());
         //return sb.toString();
+        set.add(Integer.parseInt(sb.toString()));
     }
 
 }
