@@ -11,7 +11,7 @@ public class programmers_모의고사 {
         System.out.println(ans);
     }
     public static int[] solution(int[] answers) {
-        //int[] answer = {};
+        int[] answer = {};
         int[] one = {1,2,3,4,5} ;// 5
         int[] two ={2,1,2,3,2,4,2,5}; //8
         int[] three ={3,3,1,1,2,2,4,4,5,5} ;//10
@@ -39,11 +39,10 @@ public class programmers_모의고사 {
                 wins.add(i);
             }
         }
-//        answer = new int[wins.size()];
-//        for(int i=0; i<wins.size();i++){
-//            answer[i]=wins.get(i)+1;
-//        }
-        int[] answer = wins.stream().mapToInt(i->i).toArray();
+        answer = new int[wins.size()];
+        for(int i=0; i<wins.size();i++){
+            answer[i]=wins.get(i)+1;
+        }
         return answer;
     }
 }
